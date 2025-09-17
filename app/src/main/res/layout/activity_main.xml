@@ -1,19 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hi man"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/halfSectionMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/halfSection1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/halfSection2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/rectangle"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/topCenterText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="£###"
+                android:textColor="#424242"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+            <TextView
+                android:id="@+id/topCenterText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jordan AJ 3"
+                android:textColor="#424242"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/topCenterText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose size"
+                android:textColor="#424242"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="30sp"/>
+
+            <GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                android:columnCount="3"
+                android:padding="16dp"
+                android:alignmentMode="alignMargins"
+                android:useDefaultMargins="true">
+
+                <!-- Cell 1 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="XS"
+                    android:background="@drawable/cell_border"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray" />
+
+                <!-- Cell 2 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="S"
+                    android:background="@drawable/cell_border"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray" />
+
+                <!-- Cell 3 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="M"
+                    android:background="@drawable/cell_border"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray" />
+
+                <!-- Cell 4 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:text="L"
+                    android:background="@drawable/cell_border"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray" />
+
+                <!-- Cell 5 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:background="@drawable/cell_border"
+                    android:text="XL"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray" />
+
+                <!-- Cell 6 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:background="@drawable/cell_border"
+                    android:text="2XL"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/darker_gray" />
+
+            </GridLayout>
+
+
+        </LinearLayout>
+
+</LinearLayout>
+
+</RelativeLayout>
