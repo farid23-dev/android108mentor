@@ -13,6 +13,7 @@ class ItemAdapter(
 ) : RecyclerView.Adapter<ItemAdapter.VH>() {
 
     var selectedMode = false
+    val selectedItems = mutableSetOf<Int>()
 
     private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean =
@@ -44,6 +45,10 @@ class ItemAdapter(
                     notifyDataSetChanged()
                 }
                 true
+            }
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) selectedItems.add(item.id)
+                else selectedItems.remove(item.id)
             }
         }
     }

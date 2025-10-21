@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         setupRecycler()
         loadDummyData()
         backPressed()
+        deleteItems()
     }
 
     private fun setupRecycler() {
@@ -35,9 +36,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadDummyData() {
-        val dummy = List(10) { i ->
-            Item(id = i + 1, name = "User ${(i + 1)}")
-        }
+        val dummy = listOf(
+            Item(1,"Farid Ismayilov"),
+            Item(2,"Nurlan Rashidov"),
+            Item(3,"Ehtiram Mustafayev"),
+            Item(4,"Javid"),
+            Item(5,"Alishan"),
+            Item(6,"Samid"),
+            Item(7,"Mansur"),
+            )
         adapter.submitList(dummy)
     }
 
@@ -55,7 +62,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun deleteItems(){
         binding.binIcon.setOnClickListener {
-
+            val currentList = adapter.differ.currentList.toMutableList()
+            val newList = currentList.filterNot { item ->
+                adapter.selectedItems.contains(item.id)
+            }
+            adapter.submitList(newList)
+            adapter.selectedMode = false
+            adapter.selectedItems.clear()
+            adapter.notifyDataSetChanged()
+            binding.binIcon.visibility = View.GONE
+            binding.backIcon.visibility = View.GONE
             }
         }
 
