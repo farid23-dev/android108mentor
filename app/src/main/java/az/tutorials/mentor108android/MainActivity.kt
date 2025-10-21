@@ -44,6 +44,15 @@ class MainActivity : AppCompatActivity() {
             Item(5,"Alishan"),
             Item(6,"Samid"),
             Item(7,"Mansur"),
+            Item(5,"Alishan"),
+            Item(6,"Samid"),
+            Item(7,"Mansur"),
+            Item(8,"Alishan"),
+            Item(9,"Samid"),
+            Item(10,"Mansur"),
+            Item(11,"Alishan"),
+            Item(12,"Samid"),
+            Item(13,"Mansur"),
             )
         adapter.submitList(dummy)
     }
@@ -73,6 +82,6 @@ class MainActivity : AppCompatActivity() {
             binding.binIcon.visibility = View.GONE
             binding.backIcon.visibility = View.GONE
             }
-        }
+    }
 
 }
