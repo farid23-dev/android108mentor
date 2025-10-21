@@ -1,13 +1,18 @@
 package az.tutorials.mentor108android
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import az.tutorials.mentor108android.databinding.ItemRowBinding
 
-class ItemAdapter : RecyclerView.Adapter<ItemAdapter.VH>() {
+class ItemAdapter(
+    private val itemSelected: (Boolean) -> Unit
+) : RecyclerView.Adapter<ItemAdapter.VH>() {
+
+    var selectedMode = false
 
     private val diffCallback = object : DiffUtil.ItemCallback<Item>() {
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean =
@@ -15,7 +20,7 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.VH>() {
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean =
             oldItem == newItem
     }
-    private val differ = AsyncListDiffer(this, diffCallback)
+    val differ = AsyncListDiffer(this, diffCallback)
     fun submitList(items: List<Item>) = differ.submitList(items)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -27,9 +32,19 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.VH>() {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = differ.currentList[position]
+
         with(holder.binding) {
             tvId.text = item.id.toString()
             tvName.text = item.name
+            checkBox.visibility = if (selectedMode) View.VISIBLE else View.GONE
+            root.setOnLongClickListener {
+                if (!selectedMode){
+                    selectedMode = true
+                    itemSelected(selectedMode)
+                    notifyDataSetChanged()
+                }
+                true
+            }
         }
     }
 

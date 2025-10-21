@@ -1,6 +1,7 @@
 package az.tutorials.mentor108android
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,7 +11,12 @@ import az.tutorials.mentor108android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val adapter = ItemAdapter()
+    private val adapter = ItemAdapter(
+        itemSelected = {
+            binding.binIcon.visibility = if (it) View.VISIBLE else View.GONE
+            binding.backIcon.visibility = if (it) View.VISIBLE else View.GONE
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         setupRecycler()
         loadDummyData()
+        backPressed()
     }
 
     private fun setupRecycler() {
@@ -33,4 +40,23 @@ class MainActivity : AppCompatActivity() {
         }
         adapter.submitList(dummy)
     }
+
+    private fun backPressed(){
+        binding.backIcon.setOnClickListener {
+            if (adapter.selectedMode){
+                adapter.selectedMode = false
+                View.GONE
+                adapter.notifyDataSetChanged()
+            }
+            binding.backIcon.visibility  = if (adapter.selectedMode) View.VISIBLE else View.GONE
+            binding.binIcon.visibility  = if (adapter.selectedMode) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun deleteItems(){
+        binding.binIcon.setOnClickListener {
+
+            }
+        }
+
 }
